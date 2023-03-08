@@ -6,6 +6,7 @@ var valoresPosicoes = [];
 var venceu = false;
 
 function escolherPosicao (id) {
+    valoresPosicoes = [];
     rodada++;   //  incrementa o valor da jogada
     
     if (posicoesPermitidas.includes(id)) {  // se a posicao esta disponivel
