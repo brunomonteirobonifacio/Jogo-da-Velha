@@ -24,7 +24,6 @@ function escolherPosicao (id) {
             }
         }
     } else {
-        alert("Posição inválida");
         rodada--;
         return;
     }
@@ -32,7 +31,7 @@ function escolherPosicao (id) {
     
     for (let i = 0; i < todasPosicoes.length; i++) {
         if (document.getElementById(todasPosicoes[i]).innerText != "") {
-            valoresPosicoes.push(document.getElementById(todasPosicoes[i]).innerText);    //  atualiza os valores das posicoes
+            valoresPosicoes.push(document.getElementById(todasPosicoes[i]).innerText.toUpperCase());    //  atualiza os valores das posicoes
         } else {
             valoresPosicoes.push(i + 1);
         }
@@ -61,11 +60,8 @@ function escolherPosicao (id) {
         // atrasado para dar tempo de aparecer o ultimo X ou O colocado
         setTimeout(() => {
             alert("Jogador "+ jogador +" venceu!");
-            for (let i = 0; i < todasPosicoes.length; i++) {
-                document.getElementById(todasPosicoes[i]).innerText = "";
-                posicoesPermitidas = ["pos1", "pos2", "pos3", "pos4", "pos5", "pos6", "pos7", "pos8", "pos9"];  //  reinicia a lista
-            }
-        }, 5);
+            reinicia();
+        }, 50);
         rodada = 0;
         venceu = false;
         return;
@@ -75,13 +71,19 @@ function escolherPosicao (id) {
     if (posicoesPermitidas.length == 0) {
         setTimeout(() => {
             alert("Deu velha");
-            for (let i = 0; i < todasPosicoes.length; i++) {
-                document.getElementById(todasPosicoes[i]).innerText = "";
-                posicoesPermitidas = ["pos1", "pos2", "pos3", "pos4", "pos5", "pos6", "pos7", "pos8", "pos9"];  //  reinicia a lista
-            }
-        }, 5);
+            reinicia();
+        }, 50);
         rodada = 0;
         return;
     }
-    valoresPosicoes = [];   //  zera o array
+
+    // funcao para reiniciar o jogo
+    function reinicia() {
+        for (let i = 0; i < todasPosicoes.length; i++) {
+                document.getElementById(todasPosicoes[i]).innerText = "";
+                posicoesPermitidas = ["pos1", "pos2", "pos3", "pos4", "pos5", "pos6", "pos7", "pos8", "pos9"];  //  reinicia a lista
+            }
+        rodada = 0;
+        valoresposicoes = [];
+    }
 }
